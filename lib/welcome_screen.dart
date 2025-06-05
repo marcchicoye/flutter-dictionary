@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+  const WelcomeScreen(this.gotoQuiz, {super.key});
+
+  final Function() gotoQuiz;
+
   @override
   Widget build(BuildContext context) {
     final ButtonStyle style =
@@ -17,7 +20,7 @@ class WelcomeScreen extends StatelessWidget {
             SizedBox(height: 30),
             ElevatedButton(
               style: style,
-              onPressed: () {},
+              onPressed: gotoQuiz,
               child: const Text('Commencez le jeu'),
             ),
           ],
