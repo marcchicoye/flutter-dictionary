@@ -80,15 +80,16 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             currentQuestion.definition,
             style: const TextStyle(color: Colors.white),
           ),
           const SizedBox(height: 30),
-          AnswerButton(answerText: _dictionary[0].answers[0], onTap: () {}),
-          AnswerButton(answerText: _dictionary[0].answers[1], onTap: () {}),
-          AnswerButton(answerText: _dictionary[0].answers[2], onTap: () {}),
+          ...currentQuestion.answers.map((answer) {
+            return AnswerButton(answerText: answer, onTap: () {});
+          }),
         ],
       ),
     );
