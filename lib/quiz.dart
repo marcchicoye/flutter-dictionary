@@ -1,5 +1,7 @@
-import 'package:dictionary/questions_screen.dart';
-import 'package:dictionary/start_screen.dart';
+import 'package:dictionary/models/definition.dart';
+import 'package:dictionary/screens/questions_screen.dart';
+import 'package:dictionary/screens/results_screen.dart';
+import 'package:dictionary/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 
 class Quiz extends StatefulWidget {
@@ -10,20 +12,24 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  // Widget? activeScreen;
-
+  final List<Definition> wrongChooseAnswers = [];
   var activeScreen = 'start-screen';
-
-  // @override
-  // void initState() {
-  //   activeScreen = StartScreen(switchScreen);
-  //   super.initState();
-  // }
+  var numberOfDefinitionsAsked = 0;
 
   void switchScreen() {
     setState(() {
-      // activeScreen = QuestionsScreen();
       activeScreen = 'questions-screen';
+    });
+  }
+
+  void chooseAnswer(Definition answer) {
+    wrongChooseAnswers.add(answer);
+  }
+
+  void getResult(int numberOfDefs) {
+    setState(() {
+      numberOfDefinitionsAsked = numberOfDefs;
+      activeScreen = 'results-screen';
     });
   }
 
@@ -32,7 +38,17 @@ class _QuizState extends State<Quiz> {
     Widget screenWidget = StartScreen(switchScreen);
 
     if (activeScreen == 'questions-screen') {
-      screenWidget = const QuestionsScreen();
+      screenWidget = QuestionsScreen(
+        onSelectAnswer: chooseAnswer,
+        onGetResult: getResult,
+      );
+    }
+
+    if (activeScreen == 'results-screen') {
+      screenWidget = ResultsScreen(
+        wrongChosenAnswers: wrongChooseAnswers,
+        numberOfDefinitionsAsked: 7,
+      );
     }
 
     return MaterialApp(
@@ -48,7 +64,6 @@ class _QuizState extends State<Quiz> {
               ],
             ),
           ),
-          // child: activeScreen,
           child: screenWidget,
         ),
       ),

@@ -6,9 +6,17 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen({
+    super.key,
+    required this.onSelectAnswer,
+    required this.onGetResult,
+  });
+
+  final void Function(Definition answer) onSelectAnswer;
+  final void Function(int numberOfDefinitionsAsked) onGetResult;
 
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
@@ -17,7 +25,20 @@ class QuestionsScreen extends StatefulWidget {
 var intValue = Random();
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
-  // late List<String> wordDefinitionAlreadyAsked;
+  var currentQuestionIndex = 0;
+
+  answerQuestion(String selectedAnswers) {
+    if (_dictionary[currentQuestionIndex].answers[0] != selectedAnswers) {
+      widget.onSelectAnswer(_dictionary[currentQuestionIndex]);
+    }
+    setState(() {
+      if (currentQuestionIndex == _dictionary.length - 1) {
+        widget.onGetResult(_dictionary.length);
+      } else {
+        currentQuestionIndex++;
+      }
+    });
+  }
 
   List<Definition> _dictionary = [];
 
@@ -73,24 +94,37 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    Definition currentQuestion = _dictionary[0];
+    Definition currentQuestion = _dictionary[currentQuestionIndex];
     // String currentQuestion.
 
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            currentQuestion.definition,
-            style: const TextStyle(color: Colors.white),
-          ),
-          const SizedBox(height: 30),
-          ...currentQuestion.answers.map((answer) {
-            return AnswerButton(answerText: answer, onTap: () {});
-          }),
-        ],
+      child: Container(
+        margin: EdgeInsets.all(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currentQuestion.definition,
+              style: GoogleFonts.lato(
+                color: const Color.fromARGB(255, 201, 153, 251),
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
+            ...currentQuestion.getShuffledAnswers().map((answer) {
+              return AnswerButton(
+                answerText: answer,
+                onTap: () {
+                  answerQuestion(answer);
+                },
+              );
+            }),
+          ],
+        ),
       ),
     );
   }

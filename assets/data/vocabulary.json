@@ -1,18 +1,57 @@
 [
   {
+    "mot": "dissidence",
+    "definition": "Action ou état des personnes qui se séparent d'une communauté religieuse, politique, sociale, d'une école philosophique.",
+    "phrase": "Entrer, être en dissidence."
+  },
+  {
     "mot": "abnégation",
-    "definition": "Fait de se sacrifier, de se dévouer pour autrui."
+    "definition": "Fait de se sacrifier, de se dévouer pour autrui.",
+    "phrase": ""
   },
   {
     "mot": "loquace",
-    "definition": "Qui parle beaucoup."
+    "definition": "Qui parle beaucoup.",
+    "phrase": ""
   },
   {
     "mot": "parcimonie",
-    "definition": "Économie rigoureuse, modération dans les dépenses."
+    "definition": "Économie rigoureuse, modération dans les dépenses.",
+    "phrase": ""
   },
   {
     "mot": "taciturne",
-    "definition": "Qui parle peu, reste silencieux."
+    "definition": "Qui parle peu, reste silencieux.",
+    "phrase": ""
+  },
+  {
+    "mot": "déchoir",
+    "definition": "Tomber dans un état inférieur à celui où l'on était.",
+    "phrase": "Déchoir dans l'estime de qqn."
+  },
+  {
+    "mot": "aristocratie",
+    "definition": "Forme de gouvernement où le pouvoir souverain appartient à la noblesse.",
+    "phrase": ""
+  },
+  {
+    "mot": "grief",
+    "definition": "Douloureux, pénible.",
+    "phrase": "Je sais que vous n'y pouvez rien et votre perte est aussi griève que la nôtre, qui vous privons de vos enfants!"
+  },
+  {
+    "mot": "émousser",
+    "definition": "rendre moins tranchant, moins aigu, ou moins vif.",
+    "phrase": "Émousser le tranchant d'un outil."
+  },
+  {
+    "mot": "anoblir",
+    "definition": "rendre moins tranchant, moins aigu, ou moins vif.",
+    "phrase": "Conférer un titre de noblesse à (qqn)."
+  },
+  {
+    "mot": "aliéner",
+    "definition": "Fait de céder ou de perdre (un droit, un bien naturel).",
+    "phrase": "Ce serait une aliénation de ma liberté."
   }
 ]

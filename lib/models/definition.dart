@@ -11,6 +11,12 @@ class Definition {
     return answers;
   }
 
+  List<String> getShuffledAnswers() {
+    final List<String> shuffledList = List.of(answers);
+    shuffledList.shuffle();
+    return shuffledList;
+  }
+
   @override
   String toString() {
     final defFormatted = StringBuffer('');
