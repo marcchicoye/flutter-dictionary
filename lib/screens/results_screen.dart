@@ -1,4 +1,5 @@
 import 'package:dictionary/models/definition.dart';
+import 'package:dictionary/questions_summary.dart';
 import 'package:flutter/material.dart';
 
 class ResultsScreen extends StatelessWidget {
@@ -13,6 +14,8 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int numberOfCorrectAnswers =
+        numberOfDefinitionsAsked - wrongChosenAnswers.length;
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -20,9 +23,15 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Vous avez répondu X sur y définition"),
+            Text(
+              'Vous avez répondu ${numberOfCorrectAnswers.toString()} sur ${numberOfDefinitionsAsked.toString()} définition',
+              style: TextStyle(
+                color: const Color.fromARGB(255, 198, 110, 241),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             SizedBox(height: 30),
-            Text("List of answers and Question"),
+            QuestionsSummary(wrongChosenAnswers),
             SizedBox(height: 30),
             TextButton(onPressed: () {}, child: Text('Recommencez')),
           ],

@@ -80,7 +80,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
     setState(() {
       _dictionary = data
-          .map((item) => Definition(item['definition'], [item['mot']]))
+          .map(
+            (item) =>
+                Definition(item['definition'], [item['mot']], item['phrase']),
+          )
           .toList();
     });
 

@@ -1,7 +1,8 @@
 class Definition {
-  Definition(this.wordDefinition, this.answers);
+  Definition(this.wordDefinition, this.answers, this.sentenceExample);
   final String wordDefinition;
   final List<String> answers;
+  final String sentenceExample;
 
   String get definition {
     return wordDefinition;
